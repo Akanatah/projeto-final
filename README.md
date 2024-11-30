@@ -20,3 +20,4 @@ Passo 2: Após isso a tela de login aparecerá e então você poderá colocar se
 
 Passo 3: Para ver que o token foi criado e a validação foi efetivada, no console do servidor será exibido o token criado após as credênciais serem colocadas corretamente, caso coloque as credênciais erradas uma mensagem na própria tela de login irá informar que os dados informados estão errados e no terminal aparecerá que suas credênciais estão incorretas
 
+P.S. : Pedi ajuda pro Luis enviar meu arquivo no github pois eu não tenho git no computador e meu computador é todo travado
