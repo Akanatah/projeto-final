@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atrativos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body{
+            padding: 10px;
+            background-color: #ccc;
+        }
+        i{
+            color: #fff;
+            width: 20px;
+            height: 20px;
+        }
+        .home{
+            margin: 10px 0px 0px 0px;
+        }
+        .sair{
+            margin: 10px 10px 0px 0px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Evento</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Participantes</a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <main>
+        <section id="alteratrativo">
+            <h2 class="text-center m-4">Alterar Evento</h2>
+            <form id="enviarAtualizacao">
+                <input aria-hidden="true" type="hidden" name="id" id="id" value="<%= r.id %>">
+                <div class="row m-4">
+                    <div class="col m-4">
+                        <label for="nomeP" class="form-label">Nome do Participante </label>
+                        <input type="text" value="<%= r.nomeP %>" name="nomeP" id="nomeP" class="form-control" tabindex="1">
+                    </div>
+                </div>
+                <div class="row m-4">
+                    <div class="row "> <input type="submit" value="Alterar" name="btalter" id="btalter" class="btn btn-warning mt-4" tabindex="6"></div>
+                </div>
+            </form>
+        </section>
+    </main>
+
+
+    <script>
+
+        document.getElementById("enviarAtualizacao").addEventListener("submit", (e) => {
+        e.preventDefault()
+        enviar()
+        })
+
+        async function enviar(){        
+
+        const id = document.getElementById("id").value
+        const nomeP = document.getElementById("nomeP").value
+
+        const data = {
+        "nomeP":nomeP,
+        "id":id
+        }
+        const dados = await fetch('/participante/'+id, { 
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+
+        const json = await dados.json()
+        let participante = await json   
+
+        alert(participante.msg)
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
